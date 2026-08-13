@@ -1,0 +1,25 @@
+name: Sync main to private CADD
+
+on:
+  push:
+    branches:
+      - main
+
+  workflow_dispatch:
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout mjlab
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Push main to CADD
+        env:
+          CADD_TOKEN: ${{ secrets.CADD_TOKEN }}
+        run: |
+          git remote add cadd "https://x-access-token:${CADD_TOKEN}@github.com/zhxiaoyu218/CADD.git"
+          git push cadd HEAD:main --force
