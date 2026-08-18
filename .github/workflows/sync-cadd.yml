@@ -24,3 +24,10 @@ jobs:
         run: |
           git remote add cadd "https://x-access-token:${CADD_TOKEN}@github.com/zhxiaoyu218/CADD.git"
           git push cadd HEAD:main --force
+          
+      - name: Push main to Domain-Adaptive-Policy-Learning
+        env:
+          MIRROR_TOKEN: ${{ secrets.CADD_TOKEN }}
+        run: |
+          git remote add dapl "https://x-access-token:${MIRROR_TOKEN}@github.com/zhxiaoyu218/Domain-Adaptive-Policy-Learning.git"
+          git push dapl HEAD:main --force
